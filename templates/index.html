@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brain OS Scheduler</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>Brain OS</h1>
+      <p class="subtitle">CPU Scheduling Simulator</p>
+    </div>
+    <button id="theme-toggle" class="ghost" type="button" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main class="layout">
+    <section class="card" aria-labelledby="input-title">
+      <h2 id="input-title">Processes</h2>
+
+      <div class="table-wrap">
+        <table class="process-table">
+          <thead>
+            <tr>
+              <th>PID</th>
+              <th>Arrival</th>
+              <th>Burst</th>
+              <th title="1 = highest">Priority</th>
+              <th><span class="sr-only">Remove</span></th>
+            </tr>
+          </thead>
+          <tbody id="process-rows"></tbody>
+        </table>
+      </div>
+
+      <div class="row-actions">
+        <button id="add-process" type="button" class="ghost">+ Add process</button>
+        <button id="load-sample" type="button" class="ghost">Sample</button>
+        <button id="load-random" type="button" class="ghost">Random</button>
+      </div>
+
+      <div class="run-bar">
+        <label class="quantum">
+          Time quantum (RR)
+          <input id="quantum" type="number" min="1" max="100" value="2">
+        </label>
+        <button id="run" type="button" class="primary">Run simulation</button>
+      </div>
+
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section class="card" aria-labelledby="output-title">
+      <h2 id="output-title">Results</h2>
+
+      <div id="tabs" class="tabs" role="tablist"></div>
+
+      <div id="empty-state" class="empty">
+        Add processes and press <strong>Run simulation</strong>.
+      </div>
+
+      <div id="algorithm-view" hidden>
+        <h3 class="section-label">Gantt chart</h3>
+        <div id="gantt" class="gantt"></div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Avg waiting</span>
+            <span id="stat-waiting" class="stat-value"></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Avg turnaround</span>
+            <span id="stat-turnaround" class="stat-value"></span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>PID</th>
+                <th>Start</th>
+                <th>Completion</th>
+                <th>Waiting</th>
+                <th>Turnaround</th>
+              </tr>
+            </thead>
+            <tbody id="result-rows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="compare-view" hidden>
+        <h3 class="section-label">Average waiting time</h3>
+        <div id="compare-bars" class="bars"></div>
+
+        <div class="table-wrap">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>Algorithm</th>
+                <th>Avg waiting</th>
+                <th>Avg turnaround</th>
+              </tr>
+            </thead>
+            <tbody id="compare-rows"></tbody>
+          </table>
+        </div>
+        <p id="best-note" class="best-note"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

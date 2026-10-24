@@ -3,7 +3,8 @@
 from collections import deque
 
 
-def round_robin(processes, quantum=2):
+def round_robin(processes, quantum=2, timeline=None):
+    """timeline: optional list, filled with (pid, start, end) slices."""
     if type(quantum) is not int or quantum <= 0:
         raise ValueError("Quantum must be a positive integer.")
 
@@ -33,6 +34,8 @@ def round_robin(processes, quantum=2):
         first_start.setdefault(p.pid, current_time)
 
         run_time = min(quantum, remaining[p.pid])
+        if timeline is not None:
+            timeline.append((p.pid, current_time, current_time + run_time))
         current_time += run_time
         remaining[p.pid] -= run_time
 
