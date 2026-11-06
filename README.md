@@ -1,24 +1,3 @@
-             BRAIN OS
-                 |
-       Choose an option
-           /         \
-          1           2
-          |           |
-   Existing Example   Enter Tasks
-          |           |
-   Run Existing       Enter Task Name
-   Processes          Enter Arrival Time
-          |           Enter Burst Time
-          |           Enter Priority
-          |                 |
-          |           Choose Algorithm
-          |                 |
-          |        FCFS / SJF / Priority / RR
-          |                 |
-          \                 /
-            Display Results
-
-
 # Brain OS - CPU Scheduling Simulator
 
 ## Overview
