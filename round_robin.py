@@ -8,7 +8,9 @@ def round_robin(processes, quantum=2):
         raise ValueError("Quantum must be a positive integer.")
 
     ordered = sorted(processes, key=lambda p: p.arrival_time)
-    remaining = {p.pid: p.burst_time for p in ordered}
+    remaining = {}
+    for p in ordered:
+        remaining[p.pid] = p.burst_time
     first_start = {}
     completion_times = {}
     ready = deque()
@@ -56,7 +58,7 @@ def round_robin(processes, quantum=2):
         waiting = turnaround - p.burst_time
 
         results.append({
-            "PID": p.pid,
+            "PID": p.name,
             "Start": first_start[p.pid],
             "Completion": completion_times[p.pid],
             "Waiting": waiting,

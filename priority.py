@@ -5,10 +5,10 @@ def priority_scheduling(processes):
     results = []
 
     while remaining:
-        available = [
-            p for p in remaining
-            if p.arrival_time <= current_time
-        ]
+        available = []
+        for p in remaining:
+            if p.arrival_time <= current_time:
+                available.append(p)
 
         if not available:
             current_time = min(p.arrival_time for p in remaining)
@@ -25,7 +25,7 @@ def priority_scheduling(processes):
         waiting = turnaround - p.burst_time
 
         results.append({
-            "PID": p.pid,
+            "PID": p.name,
             "Start": start,
             "Completion": completion,
             "Waiting": waiting,

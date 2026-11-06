@@ -25,7 +25,7 @@ def sjf(processes):
         waiting = turnaround - p.burst_time
 
         results.append({
-            "PID": p.pid,
+            "PID": p.name,
             "Start": start,
             "Completion": completion,
             "Waiting": waiting,

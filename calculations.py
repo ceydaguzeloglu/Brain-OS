@@ -1,10 +1,10 @@
 """defne"""
 
-def calculate_turnaround_time(completion_time, arrival_time):
+def calculate_turnaround_time(completion_time, arrival_time):#geridönüş süresini(turnaround) hesaplayan fonksiyon tanımlar. Sürecin bitiş zamanından ,sisteme varış zamanını çıkararak  geri dönüş süresini bulur.
     return completion_time - arrival_time
 
 
-def calculate_waiting_time(turnaround_time, burst_time):
+def calculate_waiting_time(turnaround_time, burst_time):#bekleme süresini hesaplıyor. toplam geridönüş süresinden ,sürecin işlemcide harcadığı gerçek süreyi(burst time)çıkarark, process in ne kadar boş beklediğini hesaplıyor. 
     return turnaround_time - burst_time
 
 
@@ -30,7 +30,7 @@ def display_results(results):
     print("\nScheduling Results")
     print("-" * 65)
     print(
-        f"{'PID':<10}{'Start':<10}{'Completion':<15}"
+        f"{'PID':<10}{'Start':<10}{'Completion':<15}"#metni 10 karakterlik bir alana sola dayalı olarak yerleştirir.
         f"{'Waiting':<12}{'Turnaround':<12}"
     )
 
