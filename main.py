@@ -1,4 +1,4 @@
-"""ipek"""
+"""ipek + ceyda"""
 
 from process import Process
 from fcfs import fcfs
