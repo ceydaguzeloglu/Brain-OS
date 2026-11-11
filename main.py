@@ -35,7 +35,7 @@ def choose_algorithm(processes):
         print("Invalid choice!")
         return
 
-    display_results(results)
+    display_results(results,processes)
 
 
 def existing_example():
