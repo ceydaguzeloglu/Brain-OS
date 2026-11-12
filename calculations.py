@@ -42,7 +42,11 @@ def display_gantt_chart(results):
     print("\nGantt Chart Execution Order:")
     chart = "|"
     for r in results:
-        chart += f" {r['PID']} ({r['Start']}-{r['Completion']}) |"
+        # Eğer sonuçlar içinde her bir adım / zaman dilimi ayrı ayrı tutuluyorsa (Round Robin için)
+        # r sözlüğünde 'Start' ve 'Completion' (veya o parçanın bitişi) anları yer alır.
+        start_t = r.get('Start', 0)
+        comp_t = r.get('Completion', 0)
+        chart += f" {r['PID']} ({start_t}-{comp_t}) |"
     print(chart)
 
 def display_results(results, processes=None):
@@ -61,7 +65,7 @@ def display_results(results, processes=None):
 
     for r in results:
         print(
-            f"{r['PID']:<10}{r['Start']:<10}{r['Completion']:<15}"
+            f"{r['PID']:<10}{r.get('Start', 0):<10}{r['Completion']:<15}"
             f"{r['Waiting']:<12}{r['Turnaround']:<12}"
         )
 
